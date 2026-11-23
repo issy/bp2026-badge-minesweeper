@@ -1,0 +1,6 @@
+W, H = 15, 8
+MINES = 16
+CELL = 20
+
+BOARD_X = 12
+BOARD_Y = 36
