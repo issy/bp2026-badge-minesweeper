@@ -1,6 +1,6 @@
-require("constants")
-require("digits")
-require("game")
+require("lib.constants")
+require("lib.digits")
+require("lib.game")
 
 local canvas
 local title
