@@ -1,5 +1,5 @@
 local MINE_COLOUR = 0xFF4444
-local FLAG_COLOUR = 0xFFCC44
+local FLAG_COLOUR = 0xFF0000
 local WHITE = 0xFFFFFF
 local CELL_OPEN_COLOUR = 0x182C25
 local CELL_DEFAULT_COLOUR = 0x293B35
@@ -7,6 +7,30 @@ local CELL_DEFAULT_COLOUR = 0x293B35
 local info
 local clock
 local canvas
+
+local FLAG_PATTERN = {
+    "00200",
+    "22200",
+    "00200",
+    "00100",
+    "00100",
+    "01110",
+    "11111",
+}
+
+local function draw_flag(x, y)
+    for row = 1, 7 do
+        for col = 1, 5 do
+            local cell_value = FLAG_PATTERN[row]:sub(col, col)
+            if cell_value == "1" then
+                canvas:rect(x + col * 2, y + row * 2, 2, 2, WHITE)
+            elseif cell_value == "2" then
+                canvas:rect(x + col * 2, y + row * 2, 2, 2, FLAG_COLOUR)
+            end
+        end
+    end
+
+end
 
 function initialise_ui()
     ui.bg("bg")
@@ -55,7 +79,7 @@ function draw()
                     draw_digit(canvas, px + 5, py + 3, t.n)
                 end
             elseif t.flag then
-                canvas:rect(px + 7, py + 7, 6, 6, FLAG_COLOUR)
+                draw_flag(px + 3, py + 1)
             end
         end
     end
