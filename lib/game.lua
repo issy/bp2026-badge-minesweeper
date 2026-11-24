@@ -1,4 +1,4 @@
-require("constants")
+require("lib.constants")
 
 board = {}
 cx, cy = 1, 1

@@ -1,7 +1,6 @@
-local canvas
 local info
 
-function draw()
+function draw(canvas)
     canvas:clear("bg")
 
     for y = 1, H do

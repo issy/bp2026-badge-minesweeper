@@ -4,6 +4,7 @@ require("lib.game")
 require("lib.ui")
 
 local clock
+local canvas
 
 local function setup()
     -- Initialise badge UI
@@ -29,7 +30,7 @@ local function setup()
     ui.hint("D-PAD MOVE   SELECT OPEN   BACK FLAG")
 
     new_game()
-    draw()
+    draw(canvas)
 end
 
 setup()
@@ -38,7 +39,7 @@ function on_key(key, rep)
     if finished then
         if key == "select" then
             new_game()
-            draw()
+            draw(canvas)
         elseif key == "back" then
             return false
         end
@@ -74,7 +75,7 @@ function on_key(key, rep)
         return false
     end
 
-    draw()
+    draw(canvas)
     return true
 end
 
