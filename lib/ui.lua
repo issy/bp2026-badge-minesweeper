@@ -5,13 +5,13 @@ local canvas
 function initialise_ui()
     ui.bg("bg")
 
-    info = ui.label(8, 3, "", {
+    info = ui.label(8, 1, "", {
         size = 12,
         color = "text",
         mono = true
     })
 
-    clock = ui.label(230, 3, "", {
+    clock = ui.label(230, 1, "", {
         size = 12,
         color = "aqua",
         mono = true
