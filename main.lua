@@ -10,19 +10,13 @@ local function setup()
 
     ui.bg("bg")
 
-    ui.label(8, 3, "BREAKPOINT 2026 // MINES", {
-        size = 14,
-        color = "green",
-        mono = true
-    })
-
-    info = ui.label(8, 20, "", {
+    info = ui.label(8, 3, "", {
         size = 12,
         color = "text",
         mono = true
     })
 
-    clock = ui.label(230, 20, "", {
+    clock = ui.label(230, 3, "", {
         size = 12,
         color = "aqua",
         mono = true
