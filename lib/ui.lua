@@ -1,3 +1,9 @@
+local MINE_COLOUR = 0xFF4444
+local FLAG_COLOUR = 0xFFCC44
+local WHITE = 0xFFFFFF
+local CELL_OPEN_COLOUR = 0x182C25
+local CELL_DEFAULT_COLOUR = 0x293B35
+
 local info
 local clock
 local canvas
@@ -34,22 +40,22 @@ function draw()
             local px = (x - 1) * CELL
             local py = (y - 1) * CELL
 
-            local color = 0x293B35
+            local color = CELL_DEFAULT_COLOUR
 
             if t.open then
-                color = 0x182C25
+                color = CELL_OPEN_COLOUR
             end
 
             canvas:rect(px, py, CELL - 1, CELL - 1, color)
 
             if t.open then
                 if t.mine then
-                    canvas:rect(px + 7, py + 7, 6, 6, 0xFF4444)
+                    canvas:rect(px + 7, py + 7, 6, 6, MINE_COLOUR)
                 elseif t.n > 0 then
                     draw_digit(canvas, px + 5, py + 3, t.n)
                 end
             elseif t.flag then
-                canvas:rect(px + 7, py + 5, 6, 10, 0xFFCC44)
+                canvas:rect(px + 7, py + 7, 6, 6, FLAG_COLOUR)
             end
         end
     end
@@ -58,10 +64,10 @@ function draw()
     local px = (cx - 1) * CELL
     local py = (cy - 1) * CELL
 
-    canvas:line(px, py, px + 19, py, 0xFFFFFF)
-    canvas:line(px, py, px, py + 19, 0xFFFFFF)
-    canvas:line(px + 19, py, px + 19, py + 19, 0xFFFFFF)
-    canvas:line(px, py + 19, px + 19, py + 19, 0xFFFFFF)
+    canvas:line(px, py, px + 19, py, WHITE)
+    canvas:line(px, py, px, py + 19, WHITE)
+    canvas:line(px + 19, py, px + 19, py + 19, WHITE)
+    canvas:line(px, py + 19, px + 19, py + 19, WHITE)
 
     info:text(
     "MINES " .. tostring(MINES - flags)
