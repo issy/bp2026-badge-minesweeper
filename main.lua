@@ -3,34 +3,10 @@ require("lib.digits")
 require("lib.game")
 require("lib.ui")
 
-local clock
-local canvas
-
 local function setup()
-    -- Initialise badge UI
-
-    ui.bg("bg")
-
-    info = ui.label(8, 3, "", {
-        size = 12,
-        color = "text",
-        mono = true
-    })
-
-    clock = ui.label(230, 3, "", {
-        size = 12,
-        color = "aqua",
-        mono = true
-    })
-
-    canvas = ui.canvas(BOARD_X, BOARD_Y, W * CELL, H * CELL, {
-        color = "bg"
-    })
-
-    ui.hint("D-PAD MOVE   SELECT OPEN   BACK FLAG")
-
+    initialise_ui()
     new_game()
-    draw(canvas)
+    draw()
 end
 
 setup()
@@ -39,7 +15,7 @@ function on_key(key, rep)
     if finished then
         if key == "select" then
             new_game()
-            draw(canvas)
+            draw()
         elseif key == "back" then
             return false
         end
@@ -75,13 +51,13 @@ function on_key(key, rep)
         return false
     end
 
-    draw(canvas)
+    draw()
     return true
 end
 
 function on_tick(ms)
     if started and not finished then
         elapsed = elapsed + ms / 1000
-        clock:text("TIME " .. tostring(math.floor(elapsed)) .. "s")
+        update_clock_ui(elapsed)
     end
 end

@@ -1,6 +1,30 @@
 local info
+local clock
+local canvas
 
-function draw(canvas)
+function initialise_ui()
+    ui.bg("bg")
+
+    info = ui.label(8, 3, "", {
+        size = 12,
+        color = "text",
+        mono = true
+    })
+
+    clock = ui.label(230, 3, "", {
+        size = 12,
+        color = "aqua",
+        mono = true
+    })
+
+    canvas = ui.canvas(BOARD_X, BOARD_Y, W * CELL, H * CELL, {
+        color = "bg"
+    })
+
+    ui.hint("D-PAD MOVE   SELECT OPEN   BACK FLAG")
+end
+
+function draw()
     canvas:clear("bg")
 
     for y = 1, H do
@@ -53,4 +77,8 @@ function draw(canvas)
     else
         ui.hint("SELECT: OPEN    BACK: FLAG")
     end
+end
+
+function update_clock_ui(elapsed)
+    clock:text("TIME " .. tostring(math.floor(elapsed)) .. "s")
 end
